@@ -9,7 +9,6 @@ import { Box, Container, CssBaseline } from "@mui/material";
 import ThemeProvider from "@mui/material/styles/ThemeProvider";
 import createTheme from "@mui/material/styles/createTheme";
 import { Route, Routes } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
 import { themeOptions } from "./Theme";
 import MenuBar from "./components/MenuBar";
 import Toast from "./components/Toast";
@@ -18,6 +17,7 @@ import HomeScreen from "./views/HomeScreen";
 import AuthScreen from "./views/LoginScreen";
 import ContactScreen from "./views/ContactScreen";
 import SplashScreen from "./views/SplashScreen";
+import useAuthStore from "./state/useAuthStore";
 import "./App.css";
 
 export const MainContext = createContext({});
@@ -26,8 +26,11 @@ const theme = createTheme(themeOptions);
 const SPLASH_DURATION_MS = 1350;
 
 function App() {
-  const dispatch = useDispatch();
-  const userData = useSelector((state) => state.auth.userData);
+  const userData = useAuthStore((state) => state.userData);
+  const currentUser = useAuthStore((state) => state.currentUser);
+  const setCurrentUser = useAuthStore((state) => state.setCurrentUser);
+  const clearCurrentUser = useAuthStore((state) => state.clearCurrentUser);
+  const setUserData = useAuthStore((state) => state.setUserData);
   const [showSplash, setShowSplash] = useState(true);
   const [toastState, setToastState] = useState({
     open: false,
@@ -57,13 +60,27 @@ function App() {
 
   const contextValue = useMemo(
     () => ({
-      dispatch,
+      authStore: {
+        currentUser,
+        setCurrentUser,
+        clearCurrentUser,
+        setUserData,
+      },
       userData,
       toastState,
       showToast,
       hideToast,
     }),
-    [dispatch, hideToast, showToast, toastState, userData]
+    [
+      clearCurrentUser,
+      currentUser,
+      hideToast,
+      setCurrentUser,
+      setUserData,
+      showToast,
+      toastState,
+      userData,
+    ]
   );
 
   return (

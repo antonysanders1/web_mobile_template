@@ -1,27 +1,29 @@
 import { act } from "react";
 import { render, screen } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
-import { Provider } from "react-redux";
 import { vi } from "vitest";
 import App from "./App";
-import store from "./globalState/store";
+import useAuthStore from "./state/useAuthStore";
 
 describe("App shell", () => {
   it("renders the shared navigation after the splash screen", async () => {
     vi.useFakeTimers();
+    useAuthStore.setState({
+      currentUser: null,
+      userData: {},
+      userPosts: [],
+    });
 
     render(
-      <Provider store={store}>
-        <MemoryRouter
-          initialEntries={["/"]}
-          future={{
-            v7_startTransition: true,
-            v7_relativeSplatPath: true,
-          }}
-        >
-          <App />
-        </MemoryRouter>
-      </Provider>
+      <MemoryRouter
+        initialEntries={["/"]}
+        future={{
+          v7_startTransition: true,
+          v7_relativeSplatPath: true,
+        }}
+      >
+        <App />
+      </MemoryRouter>
     );
 
     await act(async () => {
