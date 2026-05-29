@@ -9,8 +9,8 @@ const middlewares = [
 ];
 
 const store = createStore(
-  rootReducer
-  //   composeWithDevTools(applyMiddleware(...middlewares))
+  rootReducer,
+  composeWithDevTools(applyMiddleware(...middlewares))
 );
 
 export default store;

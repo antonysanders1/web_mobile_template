@@ -1,62 +1,101 @@
-import { createTheme } from "@mui/material/styles";
-
-export const theme = {
+export const themeOptions = {
   palette: {
+    mode: "light",
     primary: {
-      main: "#42a5f5",
-      dark: "#90caf9",
-      light: "#e3f2fd",
+      main: "#3f6df6",
+      light: "#7394ff",
+      dark: "#294dc7",
+      contrastText: "#f8fbff",
     },
     secondary: {
-      main: "#ab47bc",
-      dark: "#ce93d8",
-      light: "#f3e5f5",
+      main: "#94a3ff",
+      light: "#b8c2ff",
+      dark: "#6f7de4",
+      contrastText: "#1d2956",
     },
-    error: {
-      main: "#f44336",
-      dark: "#d32f2f",
-      light: "#e57373",
+    background: {
+      default: "#dbe6ff",
+      paper: "#ffffff",
     },
-    warning: {
-      main: "#ff9800",
-      dark: "#f57c00",
-      light: "#ffe082",
-    },
-    info: {
-      main: "#2196f3",
-      dark: "#1976d2",
-      light: "#90caf9",
+    text: {
+      primary: "#101a3a",
+      secondary: "#66708d",
     },
     success: {
-      main: "#4caf50",
-      dark: "#2e7d32",
-      light: "#c8e6c9",
+      main: "#3d9b78",
     },
-    black: "#000000",
-    white: "#ffffff",
-    grey: {
-      main: "#808080",
-      light: "#d3d3d3",
-      dark: "#606060",
+    info: {
+      main: "#5f85ff",
+    },
+    warning: {
+      main: "#ffcd75",
+    },
+    error: {
+      main: "#d9656a",
     },
   },
+  shape: {
+    borderRadius: 22,
+  },
   typography: {
-    fontFamily: "Raleway, Arial",
-  }
+    fontFamily: '"Manrope", "Segoe UI", sans-serif',
+    h1: {
+      fontFamily: '"Space Grotesk", "Segoe UI", sans-serif',
+      fontWeight: 700,
+    },
+    h2: {
+      fontFamily: '"Space Grotesk", "Segoe UI", sans-serif',
+      fontWeight: 700,
+    },
+    h3: {
+      fontFamily: '"Space Grotesk", "Segoe UI", sans-serif',
+      fontWeight: 700,
+    },
+    h4: {
+      fontFamily: '"Space Grotesk", "Segoe UI", sans-serif',
+      fontWeight: 700,
+    },
+    button: {
+      textTransform: "none",
+      fontWeight: 700,
+    },
+  },
+  components: {
+    MuiButton: {
+      defaultProps: {
+        disableElevation: true,
+      },
+      styleOverrides: {
+        root: {
+          borderRadius: 999,
+          paddingInline: "1.2rem",
+          minHeight: 48,
+          letterSpacing: "-0.01em",
+        },
+      },
+    },
+    MuiCard: {
+      styleOverrides: {
+        root: {
+          borderRadius: 24,
+        },
+      },
+    },
+    MuiChip: {
+      styleOverrides: {
+        root: {
+          borderRadius: 999,
+          fontWeight: 700,
+        },
+      },
+    },
+    MuiOutlinedInput: {
+      styleOverrides: {
+        root: {
+          backgroundColor: "rgba(249, 251, 255, 0.95)",
+          borderRadius: 18,
+        },
+      },
+    },
+  },
 };
-
-// {
-//   colors: {
-//     primary: "",
-//     secondary: "",
-//     accent: "",
-//     black: "#000000",
-//     grey: "#ebebeb",
-//     white: "#ffffff",
-//     error: "#d40000",
-//     success: "#00c133",
-//     warning: "#ffa600",
-//     info: "#00b1ff",
-//   },
-//   font: "",
-// };
